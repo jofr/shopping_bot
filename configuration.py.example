@@ -1,0 +1,14 @@
+LIST_OF_USERS = [] # Telegrame user id
+API_TOKEN = ''
+
+kategorien = {
+    "Ernährung": [],
+    "Drogerie": [],
+    "Elektronik": [],
+    "Bücher": [],
+    "Kleidung": [],
+    "Jungle": [],
+    "Reise": [],
+    "Einrichtung": [],
+    "Sonstiges": []
+}
