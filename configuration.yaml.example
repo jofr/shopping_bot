@@ -1,0 +1,80 @@
+# Telegram bot token
+bot_token: ""
+
+# CSV ledger file
+ledger_file: "shopping_db.csv"
+
+# Users, their telegram ID, their color for reports and an optional list of
+# synonyms that the bot should understand. For purchases that are shared an
+# extra user can be created (e.g. if Alice and Bob buy a Pizza that they both
+# eat, they would set the recipient of this purchase to the "Common" user in the
+# example below)
+users:
+  "Alice":
+    telegram_id: 123456789
+    display_name: "Alice"
+    emoji_name: "🦕"
+    color: "#ccebc5"
+    synonyms: []
+  "Bob":
+    telegram_id: 123456789
+    display_name: "Bob"
+    emoji_name: "🐢"
+    color: "#a6cee3"
+    synonyms: []
+  "Common":
+    display_name: "Common expenses"
+    emoji_name: "🛒"
+    synonyms: []
+
+# Spending categories, their color for reports and a list of common keywords or
+# synonyms for that category that the bot should understand (e.g. sending the
+# bot the message "23.00 Lidl" would mean that the bot understands that this is
+# an expense belonging in the "Food" category)
+categories:
+  "Food": 
+    display_name: "Food"
+    emoji_name: "🍜"
+    color: "#8dd3c7"
+    synonyms: ["Food", "Rewe", "Lidl", "Netto", "Penny", "Edeka"]
+  "Books":
+    display_name: "Books"
+    emoji_name: "📚"
+    color: "#bebada"
+    synonyms: ["Books"]
+  "Travel":
+    display_name: "Travel"
+    emoji_name: "🚁"
+    color: "#80b1d3"
+    synonyms: ["Travel", "Hotel", "Train", "Ticket"]
+  "Other":
+    display_name: "Other"
+    emoji_name: "🎁"
+    color: "#d9d9d9"
+    synonyms: ["Other"]
+
+personal_report:
+  title: "Your expenses"
+  figures:
+    - period: "year"
+      recipient: "user"
+      plot:
+        - { what: "expenses", per: "user", type: "stacked_hbar", title: "Gesamtausgaben", sort: True }
+        - { what: "expenses", per: "category", type: "hbars", sort: True }
+    - period: "per_month_of_year"
+      recipient: "user"
+      plot:
+        - { what: "expenses", per: "category", type: "stacked_bar", sort: True }
+
+common_report:
+  title: "Common expenses"
+  figures:
+    - period: "year"
+      recipient: "Common"
+      plot:
+        - { what: "expenses", per: "user", type: "stacked_hbar", title: "Gesamtausgaben", sort: False }
+        - { what: "expenses", per: "category", type: "hbars", sort: True }
+    - period: "per_month_of_year"
+      recipient: "Common"
+      plot:
+        - { what: "expenses", per: "category", type: "stacked_bar", sort: True }

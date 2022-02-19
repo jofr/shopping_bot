@@ -1,5 +1,5 @@
 venv
 __pycache__
-configuration.py
+configuration.yaml
 shopping_db.csv
 shopping_db.csv.backup
