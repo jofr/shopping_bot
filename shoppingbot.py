@@ -12,6 +12,7 @@ import pytz
 from shutil import copyfile
 
 from ledger import Ledger
+from report import generate_report
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -87,8 +88,15 @@ def help(update, context):
                               'eine Auswertung! 📊')
 
 def create_report(user, bot):
-    # TODO
-    return
+    buffer_personal_report = generate_report("personal", user, ledger, config)
+    buffer_common_report = generate_report("common", user, ledger, config)
+
+    bot.send_media_group(config["users"][user]["telegram_id"],
+                         [InputMediaPhoto(buffer_personal_report),
+                          InputMediaPhoto(buffer_common_report)])
+
+    buffer_personal_report.close()
+    buffer_common_report.close()
 
 @restricted
 def report(update, context):
